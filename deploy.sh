@@ -11,16 +11,16 @@ NGINX_INGRESS_MANIFEST="https://raw.githubusercontent.com/kubernetes/ingress-ngi
 INGRESS_CLASS="nginx"
 
 FILES=(
-    "namespace.yaml"
-    "database-secret.yaml"
-    "database-pvc.yaml"
-    "database-deployment.yaml"
-    "database-service.yaml"
-    "backend-deployment.yaml"
-    "backend-service.yaml"
-    "frontend-deployment.yaml"
-    "frontend-service.yaml"
-    "ingress.yaml"
+    "k8s/namespace.yaml"
+    "k8s/database-secret.yaml"
+    "k8s/database-pvc.yaml"
+    "k8s/database-deployment.yaml"
+    "k8s/database-service.yaml"
+    "k8s/backend-deployment.yaml"
+    "k8s/backend-service.yaml"
+    "k8s/frontend-deployment.yaml"
+    "k8s/frontend-service.yaml"
+    "k8s/ingress.yaml"
 )
 
 CURRENT_STEP="initialization"
