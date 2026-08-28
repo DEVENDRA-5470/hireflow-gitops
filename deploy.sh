@@ -342,7 +342,7 @@ CURRENT_STEP="creating namespace"
 
 log "Creating namespace..."
 
-kubectl apply -f namespace.yaml
+kubectl apply -f k8s/namespace.yaml
 
 if kubectl wait \
     --for=jsonpath='{.status.phase}'=Active \
@@ -429,15 +429,15 @@ CURRENT_STEP="validating Kubernetes manifests"
 log "Validating manifests..."
 
 VALIDATION_FILES=(
-    "database-secret.yaml"
-    "database-pvc.yaml"
-    "database-deployment.yaml"
-    "database-service.yaml"
-    "backend-deployment.yaml"
-    "backend-service.yaml"
-    "frontend-deployment.yaml"
-    "frontend-service.yaml"
-    "ingress.yaml"
+    "k8s/database-secret.yaml"
+    "k8s/database-pvc.yaml"
+    "k8s/database-deployment.yaml"
+    "k8s/database-service.yaml"
+    "k8s/backend-deployment.yaml"
+    "k8s/backend-service.yaml"
+    "k8s/frontend-deployment.yaml"
+    "k8s/frontend-service.yaml"
+    "k8s/ingress.yaml"
 )
 
 for file in "${VALIDATION_FILES[@]}"; do
@@ -464,7 +464,7 @@ log "Creating database Secret..."
 
 kubectl apply \
     -n "${NAMESPACE}" \
-    -f database-secret.yaml
+    -f k8s/database-secret.yaml
 
 if kubectl get secret database-secret \
     -n "${NAMESPACE}" >/dev/null 2>&1
@@ -486,7 +486,7 @@ log "Creating database PVC..."
 
 kubectl apply \
     -n "${NAMESPACE}" \
-    -f database-pvc.yaml
+    -f k8s/database-pvc.yaml
 
 success "Database PVC created/updated."
 
@@ -496,7 +496,7 @@ log "Deploying database..."
 
 kubectl apply \
     -n "${NAMESPACE}" \
-    -f database-deployment.yaml
+    -f k8s/database-deployment.yaml
 
 success "Database Deployment created/updated."
 
@@ -608,7 +608,7 @@ log "Creating database service..."
 
 kubectl apply \
     -n "${NAMESPACE}" \
-    -f database-service.yaml
+    -f k8s/database-service.yaml
 
 success "Database service is ready."
 
@@ -632,7 +632,7 @@ log "Deploying backend..."
 
 kubectl apply \
     -n "${NAMESPACE}" \
-    -f backend-deployment.yaml
+    -f k8s/backend-deployment.yaml
 
 success "Backend Deployment created/updated."
 
@@ -682,7 +682,7 @@ log "Creating backend service..."
 
 kubectl apply \
     -n "${NAMESPACE}" \
-    -f backend-service.yaml
+    -f k8s/backend-service.yaml
 
 success "Backend service is ready."
 
@@ -706,7 +706,7 @@ log "Deploying frontend..."
 
 kubectl apply \
     -n "${NAMESPACE}" \
-    -f frontend-deployment.yaml
+    -f k8s/frontend-deployment.yaml
 
 success "Frontend Deployment created/updated."
 
@@ -756,7 +756,7 @@ log "Creating frontend service..."
 
 kubectl apply \
     -n "${NAMESPACE}" \
-    -f frontend-service.yaml
+    -f k8s/frontend-service.yaml
 
 success "Frontend service is ready."
 
@@ -873,7 +873,7 @@ log "Creating ingress..."
 
 kubectl apply \
     -n "${NAMESPACE}" \
-    -f ingress.yaml
+    -f k8s/ingress.yaml
 
 success "Ingress is created."
 
